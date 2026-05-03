@@ -24,7 +24,12 @@ const CartPage = () => {
           <Link to="/products" className="secondary-btn">
             Continue Shopping
           </Link>
-          <button className="primary-btn">Checkout</button>
+          <button
+            className="primary-btn"
+            onClick={() => alert("Checkout coming soon!")}
+          >
+            Checkout
+          </button>
         </div>
       </div>
     </section>
