@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment, removeItem } from "../store/CartSlice.jsx";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
 
   return (
     <div className="cart-item">
@@ -11,6 +12,7 @@ const CartItem = ({ item }) => {
         <h4>{item.name}</h4>
         <p>Unit cost: ${item.price.toFixed(2)}</p>
         <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
+        <p>Cart total: ${totalAmount.toFixed(2)}</p>
       </div>
       <div className="cart-actions">
         <button onClick={() => dispatch(decrement(item.id))}>-</button>

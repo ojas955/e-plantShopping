@@ -67,11 +67,17 @@ a {
 
 .landing {
   padding: 5rem 3rem;
-  background: url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop") center/cover;
   color: #f5f1e8;
   min-height: 70vh;
   display: flex;
   align-items: center;
+}
+
+.background-image {
+  background-image: url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .landing-content {

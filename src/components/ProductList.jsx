@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { plantData } from "../data/plants.js";
 import { addItem } from "../store/CartSlice.jsx";
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
   const categories = [...new Set(plantData.map((plant) => plant.category))];
 
   return (
@@ -22,12 +23,20 @@ const ProductList = () => {
                   <p>{plant.description}</p>
                   <div className="price-row">
                     <span>${plant.price.toFixed(2)}</span>
-                    <button
-                      className="secondary-btn"
-                      onClick={() => dispatch(addItem(plant))}
-                    >
-                      Add to cart
-                    </button>
+                    {(() => {
+                      const isInCart = cartItems.some(
+                        (item) => item.id === plant.id
+                      );
+                      return (
+                        <button
+                          className="secondary-btn"
+                          disabled={isInCart}
+                          onClick={() => dispatch(addItem(plant))}
+                        >
+                          {isInCart ? "Added" : "Add to cart"}
+                        </button>
+                      );
+                    })()}
                   </div>
                 </div>
               ))}
